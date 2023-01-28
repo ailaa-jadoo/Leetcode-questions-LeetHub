@@ -27,14 +27,15 @@ public:
         
         k = k%(n+1);
         int jumps = n-k;
-        ListNode* temp2 = head;
+        
+        temp = head;
         while(jumps){
-            temp2 = temp2->next;
+            temp = temp->next;
             jumps--;
         }
         
-        ListNode* newHead = temp2->next;
-        temp2->next = NULL;
+        ListNode* newHead = temp->next;
+        temp->next = NULL;
         
         return newHead;
         
