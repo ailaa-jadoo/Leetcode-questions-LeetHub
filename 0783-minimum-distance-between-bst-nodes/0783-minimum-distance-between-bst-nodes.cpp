@@ -20,13 +20,17 @@ public:
     }
     
     int minDiffInBST(TreeNode* root) {
+        
         vector<int> res;
         inorder(root, res);
-        int diff=abs(res[0]-res[1]);
-        for(int i=0;i<res.size();i++)
-            for(int j=i+1;j<res.size();j++){
-                diff = min(diff, abs(res[i]-res[j]));
-            }
+        
+        int diff = INT_MAX;
+        
+        sort(res.begin(), res.end());
+        for (int i = 0; i < res.size() - 1; i++)
+            if (res[i + 1] - res[i] < diff)
+                diff = res[i + 1] - res[i];
+        
         
         return diff;
     }    
