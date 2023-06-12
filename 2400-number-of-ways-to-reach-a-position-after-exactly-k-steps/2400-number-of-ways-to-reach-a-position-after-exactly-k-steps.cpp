@@ -6,7 +6,7 @@ public:
             return 1;
         if(k==0)
             return 0;
-        if(dp[currPos+1000][k] != -1)
+        if(dp[currPos+1000][k] != -1)  //curPos+1000? aisa h ki minus karte karte max bhi -1000 jayega to usko 0or0+ rakhne ke liye1000 add kardiya h
             return dp[currPos+1000][k];
         long long a = count(currPos+1, target, dp, k-1)+count(currPos-1, target, dp, k-1);
         
