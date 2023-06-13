@@ -17,15 +17,12 @@ public:
         int maxSum=0;
         
         for (int col = n - 1; col >= 0; col--) {
-            int currentMax = INT_MIN;
+            int currMax = INT_MIN;
 
-            for (int row = 0; row < m; row++) {
-                if (grid[row][col] > currentMax) {
-                    currentMax = grid[row][col];
-                }
-            }
+            for (int row = 0; row < m; row++) 
+                currMax = max(currMax, grid[row][col]);
 
-            maxSum += currentMax;
+            maxSum += currMax;
         }
                 
         return maxSum;
