@@ -31,4 +31,27 @@ public:
         
         return minDiff;
     }
-};              
+};   
+
+
+
+
+//     void inOrder(TreeNode* node, vector<int> &v){
+//         if(!node)
+//             return;
+//         inOrder(node->left, v);
+//         v.push_back(node->val);
+//         inOrder(node->right, v);        
+//     }
+//     int getMinimumDifference(TreeNode* root) {
+//         vector<int> v;
+        
+//         inOrder(root, v);
+        
+//         int minDiff=INT_MAX;
+        
+//         for(int i=0;i<v.size()-1;i++)
+//             minDiff = min(minDiff, v[i+1]-v[i]);
+        
+//         return minDiff;
+//     }     
