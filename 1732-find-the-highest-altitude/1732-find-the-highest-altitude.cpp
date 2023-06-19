@@ -4,7 +4,6 @@ public:
         int sum = 0, res=INT_MIN;
         for(int g:gain){
             sum+=g;
-            cout<<sum<<" ";
             res = max(res, sum);
         }
         
