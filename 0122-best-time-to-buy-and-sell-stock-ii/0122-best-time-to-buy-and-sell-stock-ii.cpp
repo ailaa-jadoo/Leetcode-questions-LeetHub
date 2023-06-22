@@ -1,26 +1,50 @@
+// tabulation method
+
 class Solution {
-public:
-    int f(int idx, vector<int>& prices, int allowedToBuy, int n, vector<vector<int>>& dp){
-        if(idx == n)
-            return 0;
-        
-        if(dp[idx][allowedToBuy] != -1)
-            return dp[idx][allowedToBuy];
-        
-        int profit = 0;
-        
-        if(allowedToBuy)
-            profit = max(-prices[idx]+f(idx+1, prices, 0, n, dp), f(idx+1, prices, 1, n, dp));
-        else
-            profit = max(prices[idx]+f(idx+1, prices, 1, n, dp), f(idx+1, prices, 0, n, dp));
-        
-        return dp[idx][allowedToBuy] = profit;
-            
-    }
-    
+public: 
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        vector<vector<int>> dp(n+1, vector<int>(2, -1));
-        return f(0, prices, 1, n, dp);    
+        vector<vector<int>> dp(n+1, vector<int>(2, 0));
+        
+        dp[n][0] = dp[n][1] = 0;
+        
+        for(int idx =n-1;idx>=0;idx--){
+            for(int allowedToBuy=0;allowedToBuy<=1;allowedToBuy++){
+                int profit = 0;
+        
+                if(allowedToBuy)
+                    profit = max(-prices[idx]+dp[idx+1][0] , dp[idx+1][1]);
+                else
+                    profit = max(prices[idx]+dp[idx+1][1] , dp[idx+1][0]);
+
+                dp[idx][allowedToBuy] = profit;
+            }
+        }
+        return dp[0][1];    
     }
 };
+
+
+// Recursive
+
+// class Solution {
+// public:
+//     int f(int idx, vector<int>& prices, int allowedToBuy, int n){
+//         if(idx == n)
+//             return 0;
+        
+//         int profit = 0;
+        
+//         if(allowedToBuy)
+//             profit = max(-prices[idx]+f(idx+1, prices, 0, n), f(idx+1, prices, 1, n));
+//         else
+//             profit = max(prices[idx]+f(idx+1, prices, 1, n), f(idx+1, prices, 0, n));
+        
+//         return profit;
+            
+//     }
+    
+//     int maxProfit(vector<int>& prices) {
+//         return f(0, prices, 1, prices.size());    
+//     }
+// };
