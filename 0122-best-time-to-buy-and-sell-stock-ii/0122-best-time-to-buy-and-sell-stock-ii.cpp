@@ -4,23 +4,25 @@ class Solution {
 public: 
     int maxProfit(vector<int>& prices) {
         int n = prices.size();
-        vector<vector<int>> dp(n+1, vector<int>(2, 0));
+        vector<int> ahead(2, 0);
+        vector<int> curr(2, 0);
         
-        dp[n][0] = dp[n][1] = 0;
+        ahead[0] = ahead[1] = 0;
         
         for(int idx =n-1;idx>=0;idx--){
             for(int allowedToBuy=0;allowedToBuy<=1;allowedToBuy++){
                 int profit = 0;
         
                 if(allowedToBuy)
-                    profit = max(-prices[idx]+dp[idx+1][0] , dp[idx+1][1]);
+                    profit = max(-prices[idx]+ahead[0] , ahead[1]);
                 else
-                    profit = max(prices[idx]+dp[idx+1][1] , dp[idx+1][0]);
+                    profit = max(prices[idx]+ahead[1] , ahead[0]);
 
-                dp[idx][allowedToBuy] = profit;
+                curr[allowedToBuy] = profit;
             }
+            ahead = curr;
         }
-        return dp[0][1];    
+        return ahead[1];    
     }
 };
 
