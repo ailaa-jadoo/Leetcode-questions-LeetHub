@@ -1,7 +1,6 @@
 class Solution {
 public:
     int isPrefixOfWord(string sentence, string searchWord) {
-        vector<string> words;
         stringstream ss(sentence);
         string word;
         
