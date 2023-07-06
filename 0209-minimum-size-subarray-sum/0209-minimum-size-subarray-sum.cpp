@@ -1,24 +1,25 @@
 class Solution {
 public:
     int minSubArrayLen(int target, vector<int>& nums) {
+        int left = 0, right = 0;
+        
         int sum = accumulate(nums.begin(), nums.end(), 0);
         
         if(sum<target)
             return 0;
         
-        int left = 0, right =0, currSumOfWindow=0;
-        int res=1e5+1;
+        int minLength = INT_MAX;
+        int currWinSum = 0;
         
-        for(right = 0; right < nums.size(); right++) {
-            currSumOfWindow += nums[right];
-
-            while (currSumOfWindow >= target) {
-                res = min(res, right - left + 1);
-                currSumOfWindow -= nums[left];
+        for(int right =0 ;right<nums.size();right++){
+            currWinSum += nums[right];
+            while(currWinSum >= target){
+                minLength = min(minLength, right-left+1);
+                currWinSum -= nums[left];
                 left++;
             }
         }
         
-        return res;
+        return minLength;
     }
 };
