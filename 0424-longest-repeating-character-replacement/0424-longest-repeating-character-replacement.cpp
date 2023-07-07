@@ -25,10 +25,8 @@ public:
             count[s[i]-'A']++;
                   
         for(char ch = 'A'; ch<='Z';ch++)
-            if(count[ch-'A']!=0){
-                cout<<ch<<" "<<count[ch-'A']<<endl;
+            if(count[ch-'A']!=0)
                 res = max(res, maxLen(s,k,ch));
-            }
         
         return res;
     }
