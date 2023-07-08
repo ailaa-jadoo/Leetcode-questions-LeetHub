@@ -1,3 +1,6 @@
+// question similar to Count the number of subset with a given difference   dp playlist
+
+
 class Solution {
 public:
     int findTargetSumWays(vector<int>& nums, int target) {
@@ -10,20 +13,14 @@ public:
         if(abs(target)>sum)
             return 0;
         
-        //target = target<0 ? -1*target: target;
+        //target = target<0 ? -1*target: target;  no need for this
         
         int s1 = (target+sum)/2;
         
         vector<vector<int>> t(n+1, vector<int>(s1+1, 0));
         
         t[0][0] = 1;
-        
-        // if(nums[0]==0)
-        //     t[0][0]=2;
-        // else
-        //     t[0][0]=1;
-        // if(nums[0]!=0 && nums[0]<=s1)
-        //     t[0][nums[0]]=1;        
+              
         
         for(int i=1;i<=n;i++) 
             for(int j=0;j<=s1;j++){
