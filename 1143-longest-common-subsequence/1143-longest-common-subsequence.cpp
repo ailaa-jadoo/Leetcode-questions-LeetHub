@@ -1,18 +1,35 @@
 class Solution {
-private:
-    int LCS(int n, int m, string &s1, string &s2, vector<vector<int>> &memo) {
+public:   
+    int LCS(int n, int m, string &s1, string &s2, vector<vector<int>> &t) {
         if(n == 0 || m == 0) return 0;
-        if(memo[n][m] != -1) return memo[n][m];
+        if(t[n][m] != -1) return t[n][m];
         if(s1[n-1] == s2[m-1])
-            return memo[n][m] = 1 + LCS(n-1, m-1, s1, s2, memo);
+            return t[n][m] = 1 + LCS(n-1, m-1, s1, s2, t);
         else
-            return memo[n][m] = max(LCS(n, m-1, s1, s2, memo), LCS(n-1, m, s1, s2, memo));
-    } 
-public:
+            return t[n][m] = max(LCS(n, m-1, s1, s2, t), LCS(n-1, m, s1, s2, t));
+    }
     int longestCommonSubsequence(string text1, string text2) {
-        int n = text1.size();
-        int m = text2.size();
-        vector<vector<int>> memo(n+1, vector<int>(m+1, -1));
-        return LCS(n, m, text1, text2, memo);
+        int n = text1.size() , m = text2.size();
+        vector<vector<int>> t(n+1, vector<int>(m+1, -1));
+        return LCS(n, m, text1, text2, t);
     }
 };
+
+// class Solution {
+// private:
+//     int LCS(int n, int m, string &s1, string &s2, vector<vector<int>> &memo) {
+//         if(n == 0 || m == 0) return 0;
+//         if(memo[n][m] != -1) return memo[n][m];
+//         if(s1[n-1] == s2[m-1])
+//             return memo[n][m] = 1 + LCS(n-1, m-1, s1, s2, memo);
+//         else
+//             return memo[n][m] = max(LCS(n, m-1, s1, s2, memo), LCS(n-1, m, s1, s2, memo));
+//     } 
+// public:
+//     int longestCommonSubsequence(string text1, string text2) {
+//         int n = text1.size();
+//         int m = text2.size();
+//         vector<vector<int>> memo(n+1, vector<int>(m+1, -1));
+//         return LCS(n, m, text1, text2, memo);
+//     }
+// };
