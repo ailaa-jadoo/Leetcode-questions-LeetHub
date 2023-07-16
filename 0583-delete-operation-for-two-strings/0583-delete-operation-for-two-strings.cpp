@@ -1,3 +1,5 @@
+// one of LCS variation
+
 class Solution {
 public:
     int minDistance(string word1, string word2) {
