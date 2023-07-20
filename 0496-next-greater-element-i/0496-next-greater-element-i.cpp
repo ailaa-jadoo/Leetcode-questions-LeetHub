@@ -13,7 +13,6 @@ public:
                 else
                     res[i] = -1;
             }
-            cout<<endl;
         }
         
         return res;
