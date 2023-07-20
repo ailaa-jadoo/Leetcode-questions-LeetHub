@@ -4,9 +4,6 @@ public:
         long long m = mass;
         
         sort(asteroids.begin(), asteroids.end());
-        
-        if(asteroids[0]>m)
-            return false;
                 
         for(int i=0;i<asteroids.size();i++){
             if(asteroids[i]<=m)
