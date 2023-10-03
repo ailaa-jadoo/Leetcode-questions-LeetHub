@@ -2,7 +2,7 @@ class Solution {
 public:
     long long interchangeableRectangles(vector<vector<int>>& rectangles) {
         long long count = 0;
-        map<double, long long> ratioCount;
+        unordered_map<double, long long> ratioCount;
 
         for (const auto& rect : rectangles) {
             double ratio = (double)rect[0] / rect[1];
